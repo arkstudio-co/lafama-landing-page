@@ -126,16 +126,12 @@ export default function Resenas() {
     <section className="bg-background py-section-gap" id="resenas">
       <div className="max-w-container-max mx-auto px-margin-edge">
         <div className="flex flex-col items-center mb-12">
-          <div className="flex gap-1 text-primary mb-4">
+          <div className="flex gap-1 text-amber-500 mb-4">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star key={i} size={24} fill="currentColor" />
             ))}
           </div>
-          <h2 className="section-title text-center">Reseñas Reales</h2>
-          <p className="text-secondary font-body-md mt-3 text-center">
-            {avgRating}.0 · Basado en {resenas.length} reseñas verificadas de
-            Google
-          </p>
+          <h2 className="section-title text-center">Testimonios</h2>
         </div>
 
         <div
@@ -159,7 +155,7 @@ export default function Resenas() {
                 style={{ width: `${ITEM_WIDTH}px` }}
               >
                 <div>
-                  <div className="flex gap-0.5 text-primary mb-4">
+                  <div className="flex gap-0.5 text-amber-500 mb-4">
                     {Array.from({ length: 5 }).map((_, j) => (
                       <Star
                         key={j}

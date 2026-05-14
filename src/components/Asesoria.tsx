@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function Asesoria() {
   return (
-    <section className="py-32 bg-background" id="asesoria">
+    <section className="py-section-gap bg-background" id="asesoria">
       <div className="max-w-container-max mx-auto px-margin-edge grid md:grid-cols-2 gap-24 items-center">
         <div className="h-[500px] overflow-hidden rounded-xl shadow-2xl">
           <Image

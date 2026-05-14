@@ -40,12 +40,12 @@ export default function NavBar() {
     >
       <div className="flex justify-between items-center px-6 md:px-12 py-6 max-w-[1440px] mx-auto h-24">
         <div
-          className="flex items-center w-40 z-[60] bg-black pt-5 pb-3 px-4 rounded-b-3xl shadow-2xl ml-0 relative top-0"
+          className="flex items-center w-40 z-[60] bg-black/90 py-4 px-4 rounded-b-3xl shadow-2xl ml-0 relative top-0"
           style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)" }}
         >
           <img
             alt="LaFama Logo"
-            className="w-full"
+            className="w-full pt-[90px]"
             src="/images/logo.png"
           />
         </div>
@@ -64,11 +64,9 @@ export default function NavBar() {
 
         <div className="flex justify-end w-40">
           <a
-            href="#contacto"
-            onClick={(e) => {
-              e.preventDefault()
-              document.querySelector("#contacto")?.scrollIntoView({ behavior: "smooth" })
-            }}
+            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] scale-100 active:scale-95 transition-transform rounded-btn btn-lift hidden md:inline-block text-center no-underline"
           >
             RESERVA AHORA
@@ -93,15 +91,15 @@ export default function NavBar() {
               {link.label}
             </button>
           ))}
-          <button
-            onClick={() => {
-              setOpen(false)
-              document.querySelector("#contacto")?.scrollIntoView({ behavior: "smooth" })
-            }}
-            className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] rounded-btn w-full cursor-pointer border-0"
+          <a
+            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] rounded-btn w-full inline-block text-center no-underline"
           >
             RESERVA AHORA
-          </button>
+          </a>
         </div>
       )}
     </nav>

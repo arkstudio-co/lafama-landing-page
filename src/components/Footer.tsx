@@ -2,10 +2,10 @@ import { MessageCircle } from "lucide-react"
 import { business } from "@/data/business"
 
 export default function Footer() {
-  const { address, contact, hours, social, name, stats } = business
+  const { address, contact, social, name } = business
 
   return (
-    <footer className="bg-black text-white w-full py-24 px-12 border-t border-zinc-800">
+    <footer className="bg-black text-white w-full py-[67px] px-12 border-t border-zinc-800">
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 items-start">
         <div className="flex flex-col items-center md:items-start col-span-1">
           <div className="flex justify-center md:justify-start w-full mb-8">
@@ -57,13 +57,8 @@ export default function Footer() {
             Horarios
           </h4>
           <div className="space-y-3 font-body-md text-xs text-zinc-400 tracking-wide">
-            <p>{hours.display}</p>
-            <p className="italic text-zinc-500">Tattoos con cita previa</p>
-          </div>
-          <div className="mt-6 pt-4 border-t border-zinc-800">
-            <p className="font-body-md text-[11px] text-zinc-500">
-              {stats.tattoosCompleted}+ tatuajes · {stats.yearsExperience}+ años de experiencia
-            </p>
+            <p>Lunes–sábados 10am–8pm</p>
+            <p>Domingo y festivos atención bajo cita previa</p>
           </div>
         </div>
       </div>

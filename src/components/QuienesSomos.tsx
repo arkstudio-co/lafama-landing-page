@@ -12,9 +12,14 @@ export default function QuienesSomos() {
             compromiso con la excelencia técnica y la higiene garantiza una experiencia artística única y
             segura.
           </p>
-          <button className="bg-primary text-on-primary px-12 py-5 font-label-caps text-sm tracking-[0.2em] hover:bg-zinc-800 transition-colors uppercase rounded-btn mb-8">
+          <a
+            className="inline-block bg-primary text-on-primary px-12 py-5 font-label-caps text-sm tracking-[0.2em] hover:bg-zinc-800 transition-colors uppercase rounded-btn mb-8"
+            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             COTIZA TU TATTOO
-          </button>
+          </a>
           <div className="w-20 h-[1px] bg-primary" />
         </div>
         <div className="order-1 md:order-2 h-[600px] overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000 rounded-xl">

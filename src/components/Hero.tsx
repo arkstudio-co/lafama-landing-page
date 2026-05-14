@@ -14,26 +14,27 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none z-[1]" />
       <div className="relative z-10 text-center px-4 max-w-4xl mt-24">
-        <span className="font-label-caps text-label-caps text-white/60 mb-6 block uppercase tracking-[0.3em] hero-subtitle">
-          LA FAMA TATTOO STUDIO · MEDELLÍN
-        </span>
-        <h1 className="font-display-lg text-display-lg text-white mb-6 uppercase hero-headline">
+        <h1 className="font-display-lg text-4xl md:text-5xl lg:text-6xl leading-[1.15] text-white mb-6 uppercase hero-headline">
           TATÚATE CON EXPERTOS EN EL CORAZÓN DE MEDELLÍN
         </h1>
-        <p className="font-body-lg text-white/80 mb-12 max-w-3xl mx-auto italic text-xl md:text-2xl hero-subtitle">
-          Vive una experiencia diferente, en un espacio sobrio y tranquilo,
-          atención personalizada y altos estándares de higiene
+        <p className="text-white/70 mb-12 max-w-2xl mx-auto italic text-base md:text-lg leading-relaxed hero-subtitle">
+          Vive una experiencia diferente. Un espacio sobrio y tranquilo,
+          atención personalizada y altos estándares de higiene.
         </p>
         <div className="flex flex-col sm:flex-row gap-6 justify-center hero-cta">
           <a
             className="inline-block bg-white text-black px-12 py-5 font-label-caps text-sm tracking-[0.2em] hover:bg-white/90 transition-all duration-500 uppercase rounded-btn btn-lift"
-            href="#contacto"
+            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20un%20tattoo"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             RESERVA TU SESIÓN
           </a>
           <a
             className="inline-block bg-white/10 backdrop-blur-md border border-white/30 text-white px-12 py-5 font-label-caps text-sm tracking-[0.2em] hover:bg-white/20 transition-all duration-500 uppercase rounded-btn btn-lift hero-cta-secondary"
-            href="#contacto"
+            href="https://wa.me/573188433214?text=Hola!%20Voy%20en%20camino%20a%20tu%20estudio"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             WALK-INS
           </a>
