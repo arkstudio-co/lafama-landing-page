@@ -15,6 +15,7 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lafamatattoo.com"),
   title: "La Fama Tattoo Studio | El Poblado, Medellín",
   description:
     "Tatúate con expertos en el corazón de Medellín. Realismo, Fine Line, Neotradicional y Blackwork. Atención personalizada y altos estándares de higiene.",
@@ -25,6 +26,14 @@ export const metadata: Metadata = {
       "Estudio de tatuajes en El Poblado, Medellín. Expertos en Realismo, Fine Line, Neotradicional y Blackwork.",
     locale: "es_CO",
     type: "website",
+    images: [
+      {
+        url: "/images/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "La Fama Tattoo Studio",
+      },
+    ],
   },
 }
 
@@ -34,10 +43,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="es"
-      className={`${notoSerif.variable} ${manrope.variable}`}
-    >
+    <html lang="es" className={`${notoSerif.variable} ${manrope.variable}`}>
       <body className="bg-background text-on-background font-body-md overflow-x-hidden antialiased">
         {children}
       </body>

@@ -1,7 +1,7 @@
 "use client"
 
 import { Menu, X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const links = [
   { href: "#", label: "HOME" },
@@ -12,36 +12,69 @@ const links = [
 
 export default function NavBar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  const handleClick = (href: string) => {
+    setOpen(false)
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+      return
+    }
+    const el = document.querySelector(href)
+    el?.scrollIntoView({ behavior: "smooth" })
+  }
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-[#F5F5F0]/90 backdrop-blur-sm border-b border-zinc-200/50">
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-zinc-200/50"
+          : "bg-[#F5F5F0]/80 backdrop-blur-sm border-b border-transparent"
+      }`}
+    >
       <div className="flex justify-between items-center px-6 md:px-12 py-6 max-w-[1440px] mx-auto h-24">
-        <div className="flex items-center w-40 z-[60] bg-black p-4 rounded-b-3xl shadow-2xl ml-0 relative top-0" style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)" }}>
+        <div
+          className="flex items-center w-40 z-[60] bg-black pt-5 pb-3 px-4 rounded-b-3xl shadow-2xl ml-0 relative top-0"
+          style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)" }}
+        >
           <img
             alt="LaFama Logo"
             className="w-full"
-            src="https://lh3.googleusercontent.com/aida/ADBb0uht3WyammSLHq0cw09zFwoqbx1xvxp_t4y8IotaNhiPozIMhlyebEbSx2xXeFahr-aW0ydEPpXpnetaoIagHNjM5hHcSWKIPyh_ffxuAO-VNhU1aO0SjiVe5h7OQv37WG_PAqXakqFk6lIy5GZX273Nnt6YpwnHpjuSK3S5gOwtr4UD8W0UUtBJA6FCKvWhmrozvI_wCpf-AVTnYvwxubweX688NOU_qAFtePryzWV7D-ovPWKy7YjDWG7wjAP9lLowu4DRuiQnWag"
+            src="/images/logo.png"
           />
         </div>
 
         <div className="hidden lg:flex flex-1 justify-center gap-12 font-headline-lg uppercase tracking-[0.2em] text-xs">
           {links.map((link) => (
-            <a
+            <button
               key={link.label}
-              href={link.href}
-              className="text-zinc-500 hover:text-zinc-900 transition-all duration-300"
+              onClick={() => handleClick(link.href)}
+              className="text-zinc-500 hover:text-zinc-900 transition-all duration-300 cursor-pointer bg-transparent border-0"
             >
               {link.label}
-            </a>
+            </button>
           ))}
         </div>
 
         <div className="flex justify-end w-40">
-          <button className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] scale-100 active:scale-95 transition-transform rounded-btn hidden md:block">
+          <a
+            href="#contacto"
+            onClick={(e) => {
+              e.preventDefault()
+              document.querySelector("#contacto")?.scrollIntoView({ behavior: "smooth" })
+            }}
+            className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] scale-100 active:scale-95 transition-transform rounded-btn btn-lift hidden md:inline-block text-center no-underline"
+          >
             RESERVA AHORA
-          </button>
+          </a>
           <button
-            className="md:hidden text-on-surface"
+            className="md:hidden text-on-surface cursor-pointer bg-transparent border-0"
             onClick={() => setOpen(!open)}
           >
             {open ? <X size={28} /> : <Menu size={28} />}
@@ -50,18 +83,23 @@ export default function NavBar() {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-[#F5F5F0] border-t border-zinc-200 px-6 py-8 flex flex-col gap-6 items-center">
+        <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-zinc-200 px-6 py-8 flex flex-col gap-6 items-center">
           {links.map((link) => (
-            <a
+            <button
               key={link.label}
-              href={link.href}
-              className="font-headline-lg uppercase tracking-[0.2em] text-sm text-zinc-700 hover:text-zinc-900"
-              onClick={() => setOpen(false)}
+              onClick={() => handleClick(link.href)}
+              className="font-headline-lg uppercase tracking-[0.2em] text-sm text-zinc-700 hover:text-zinc-900 cursor-pointer bg-transparent border-0"
             >
               {link.label}
-            </a>
+            </button>
           ))}
-          <button className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] rounded-btn w-full">
+          <button
+            onClick={() => {
+              setOpen(false)
+              document.querySelector("#contacto")?.scrollIntoView({ behavior: "smooth" })
+            }}
+            className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] rounded-btn w-full cursor-pointer border-0"
+          >
             RESERVA AHORA
           </button>
         </div>

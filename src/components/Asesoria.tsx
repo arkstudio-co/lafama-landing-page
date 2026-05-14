@@ -8,7 +8,7 @@ export default function Asesoria() {
           <Image
             alt="Artist working"
             className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdC5UMWaMCYFvQOHp6y4WRxBu6xVf_q8-mx4yojnYuEsqbYDo_czZOJLLXqRwwqA4vn6WJpUARrXykvFlbHsm6oS4cCggTKCyu4IVPXXRhcGRLOtDbfoZAt8C47KlMm6YDYegXHT8H5v36EiILKNEH1WfOrEWGkPfPUThyjCdCUHQg1kpPtR-pMg26HJ0OFq_DsLxKPmSSr6HypYRzi6_ARr0XITxrO0nqsQ3M7Lg6JRfG9OzhqmzdecZ3NHNGAfZO2VPK7vSRZuJX"
+            src="/images/asesoria-image.jpg"
             width={800}
             height={500}
           />

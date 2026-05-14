@@ -23,7 +23,7 @@ export default function Ubicacion() {
             alt="Street map of El Poblado"
             fill
             className="object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn_AeqtEEgDoEJNG0nnRHY1gscNaXjtwnO02vvwzLIQwCC6x2vabRXDaYX0rTvUqJRFZxWPZb8J1QLDdtBriGyYI8epA-dCMVBycRAgTAVRA4cO8ygnR6U-ltVp_9MCX1uWlAucJiWjgPgHLWbaBPRlPhisz-vXW-1L7CA1lCxEghP71HyD1ow_NG5qSnDhZruT16DIdgMZuTxgDScZSCcxkc9iFKKEYij06-anpyMIAZ-OFcxyePBcAsJMTAoZs0X48rb9610P-Xi"
+            src="/images/ubicacion.jpg"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
           <div className="absolute inset-0 flex items-center justify-center">

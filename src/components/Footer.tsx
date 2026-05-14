@@ -9,7 +9,7 @@ export default function Footer() {
             <img
               alt="Logo"
               className="w-48 h-auto"
-              src="https://lh3.googleusercontent.com/aida/ADBb0uht3WyammSLHq0cw09zFwoqbx1xvxp_t4y8IotaNhiPozIMhlyebEbSx2xXeFahr-aW0ydEPpXpnetaoIagHNjM5hHcSWKIPyh_ffxuAO-VNhU1aO0SjiVe5h7OQv37WG_PAqXakqFk6lIy5GZX273Nnt6YpwnHpjuSK3S5gOwtr4UD8W0UUtBJA6FCKvWhmrozvI_wCpf-AVTnYvwxubweX688NOU_qAFtePryzWV7D-ovPWKy7YjDWG7wjAP9lLowu4DRuiQnWag"
+              src="/images/logo.png"
             />
           </div>
         </div>
