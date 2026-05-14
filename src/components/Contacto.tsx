@@ -1,6 +1,9 @@
 import { Phone, Mail } from "lucide-react"
+import { business } from "@/data/business"
 
 export default function Contacto() {
+  const { contact } = business
+
   return (
     <section className="py-section-gap bg-surface-container-low border-y border-outline-variant/30" id="contacto">
       <div className="max-w-container-max mx-auto px-margin-edge grid md:grid-cols-2 gap-24">
@@ -17,13 +20,13 @@ export default function Contacto() {
               <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center transition-colors group-hover:bg-primary/10">
                 <Phone size={22} className="text-primary" />
               </div>
-              <span className="font-body-md text-xl">3195020806</span>
+              <span className="font-body-md text-xl">{contact.phoneDisplay}</span>
             </div>
             <div className="flex items-center gap-4 group">
               <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center transition-colors group-hover:bg-primary/10">
                 <Mail size={22} className="text-primary" />
               </div>
-              <span className="font-body-md text-xl">tattolafama@gmail.com</span>
+              <span className="font-body-md text-xl">{contact.email}</span>
             </div>
           </div>
         </div>
@@ -56,10 +59,9 @@ export default function Contacto() {
             <div className="flex flex-col gap-2">
               <label className="font-headline-lg text-2xl italic">Estilo deseado</label>
               <select className="form-input bg-transparent border-0 border-b border-primary focus:ring-0 transition-all py-4 text-xl">
-                <option>Realismo</option>
-                <option>Fine Line</option>
-                <option>Neotradicional</option>
-                <option>Blackwork</option>
+                {business.styles.map((style) => (
+                  <option key={style}>{style}</option>
+                ))}
               </select>
             </div>
             <div className="flex flex-col gap-2">

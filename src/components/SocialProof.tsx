@@ -1,4 +1,8 @@
+import { business } from "@/data/business"
+
 export default function SocialProof() {
+  const { google, stats } = business
+
   return (
     <section className="bg-background border-y border-outline-variant/20">
       <div className="max-w-container-max mx-auto px-margin-edge py-12 md:py-16">
@@ -16,7 +20,7 @@ export default function SocialProof() {
                 </svg>
               ))}
             </div>
-            <span className="font-body-lg text-on-surface font-semibold">5</span>
+            <span className="font-body-lg text-on-surface font-semibold">{google.rating}</span>
             <span className="text-secondary font-body-md hidden sm:inline">
               estrellas · Google Reviews
             </span>
@@ -26,7 +30,7 @@ export default function SocialProof() {
 
           <div className="flex items-center gap-4">
             <span className="stat-number font-display-lg text-3xl md:text-4xl text-primary font-bold">
-              1000+
+              {stats.tattoosCompleted}+
             </span>
             <span className="font-body-md text-secondary">
               Tatuajes realizados
@@ -37,7 +41,7 @@ export default function SocialProof() {
 
           <div className="flex items-center gap-4">
             <span className="font-display-lg text-3xl md:text-4xl text-primary font-bold">
-              15+
+              {stats.yearsExperience}+
             </span>
             <span className="font-body-md text-secondary">
               Años de experiencia
