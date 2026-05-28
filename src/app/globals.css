@@ -95,6 +95,14 @@
   --spacing-gutter: 24px;
 }
 
+/* ─── Responsive section gap ─── */
+
+@media (max-width: 767px) {
+  :root {
+    --spacing-section-gap: 60px;
+  }
+}
+
 /* ─── Section typography ─── */
 
 .section-title {
@@ -177,6 +185,19 @@
   transform: scale(1.12);
   background-color: #128c7e;
   box-shadow: 0 6px 28px rgba(18, 140, 126, 0.45);
+}
+
+@media (max-width: 767px) {
+  .whatsapp-float {
+    bottom: 90px;
+    right: 16px;
+    width: 60px;
+    height: 60px;
+  }
+  .whatsapp-float svg {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 /* ─── Scroll-triggered animations ─── */

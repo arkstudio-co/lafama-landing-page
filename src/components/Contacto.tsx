@@ -5,8 +5,8 @@ export default function Contacto() {
   const { contact } = business
 
   return (
-    <section className="py-section-gap bg-surface-container-low border-y border-outline-variant/30" id="contacto">
-      <div className="max-w-container-max mx-auto px-margin-edge grid md:grid-cols-2 gap-24">
+    <section className="py-section-gap bg-surface-container-low border-y border-outline-variant/30" id="contacto" style={{ scrollMarginTop: 100 }}>
+      <div className="max-w-container-max mx-auto px-6 md:px-margin-edge grid md:grid-cols-2 gap-12 md:gap-24">
         <div>
           <span className="font-label-caps text-label-caps text-secondary mb-4 block uppercase tracking-widest">
             Tu Próxima Pieza
@@ -33,7 +33,7 @@ export default function Contacto() {
         <form className="space-y-10">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-10">
             <div className="flex flex-col gap-2">
-              <label className="font-headline-lg text-2xl italic">Nombre</label>
+              <label className="font-headline-lg text-xl md:text-2xl italic">Nombre</label>
               <input
                 className="form-input bg-transparent border-0 border-b border-primary focus:ring-0 transition-all py-4 text-xl placeholder-zinc-400"
                 placeholder="Escribe tu nombre completo"
@@ -44,7 +44,7 @@ export default function Contacto() {
               </span>
             </div>
             <div className="flex flex-col gap-2">
-              <label className="font-headline-lg text-2xl italic">WhatsApp</label>
+              <label className="font-headline-lg text-xl md:text-2xl italic">WhatsApp</label>
               <input
                 className="form-input bg-transparent border-0 border-b border-primary focus:ring-0 transition-all py-4 text-xl placeholder-zinc-400"
                 placeholder="+57 300 000 0000"
@@ -57,7 +57,7 @@ export default function Contacto() {
           </div>
           <div className="flex flex-col md:grid md:grid-cols-2 gap-10">
             <div className="flex flex-col gap-2">
-              <label className="font-headline-lg text-2xl italic">Estilo deseado</label>
+              <label className="font-headline-lg text-xl md:text-2xl italic">Estilo deseado</label>
               <select className="form-input bg-transparent border-0 border-b border-primary focus:ring-0 transition-all py-4 text-xl">
                 {business.styles.map((style) => (
                   <option key={style}>{style}</option>
@@ -65,7 +65,7 @@ export default function Contacto() {
               </select>
             </div>
             <div className="flex flex-col gap-2">
-              <label className="font-headline-lg text-2xl italic">Zona del cuerpo</label>
+              <label className="font-headline-lg text-xl md:text-2xl italic">Zona del cuerpo</label>
               <input
                 className="form-input bg-transparent border-0 border-b border-primary focus:ring-0 transition-all py-4 text-xl"
                 placeholder="Brazo, espalda, costillas, etc."
@@ -74,7 +74,7 @@ export default function Contacto() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <label className="font-headline-lg text-2xl italic">Descripción</label>
+            <label className="font-headline-lg text-xl md:text-2xl italic">Descripción</label>
             <textarea
               className="form-input bg-transparent border-0 border-b border-primary focus:ring-0 transition-all py-4 text-xl resize-none"
               placeholder="Cuéntanos sobre el diseño que tienes en mente..."

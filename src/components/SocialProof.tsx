@@ -5,7 +5,7 @@ export default function SocialProof() {
 
   return (
     <section className="bg-background border-y border-outline-variant/20">
-      <div className="max-w-container-max mx-auto px-margin-edge py-12 md:py-16">
+      <div className="max-w-container-max mx-auto px-6 md:px-margin-edge py-12 md:py-16">
         <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20">
           <div className="flex items-center gap-4">
             <div className="flex">

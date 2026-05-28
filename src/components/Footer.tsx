@@ -5,7 +5,7 @@ export default function Footer() {
   const { address, contact, social, name } = business
 
   return (
-    <footer className="bg-black text-white w-full py-[67px] px-12 border-t border-zinc-800">
+    <footer className="bg-black text-white w-full py-[67px] px-6 md:px-12 border-t border-zinc-800">
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 items-start">
         <div className="flex flex-col items-center md:items-start col-span-1">
           <div className="flex justify-center md:justify-start w-full mb-8">

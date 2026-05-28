@@ -4,7 +4,7 @@ import { portafolio } from "@/data/portafolio"
 export default function Portafolio() {
   return (
     <section className="py-section-gap overflow-hidden bg-surface-container-low" id="portafolio">
-      <div className="px-margin-edge max-w-container-max mx-auto mb-16">
+      <div className="px-6 md:px-margin-edge max-w-container-max mx-auto mb-16">
         <h2 className="section-title text-center tracking-widest">PORTAFOLIO</h2>
         <p className="text-center text-secondary font-body-md mt-4 uppercase tracking-[0.2em] text-sm">
           Descubre nuestros artistas

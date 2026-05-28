@@ -27,7 +27,10 @@ export default function NavBar() {
       return
     }
     const el = document.querySelector(href)
-    el?.scrollIntoView({ behavior: "smooth" })
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 100
+      window.scrollTo({ top, behavior: "smooth" })
+    }
   }
 
   return (
@@ -45,12 +48,12 @@ export default function NavBar() {
         >
           <img
             alt="LaFama Logo"
-            className="w-full pt-[90px]"
+            className="w-full pt-[60px] md:pt-[90px]"
             src="/images/logo.png"
           />
         </div>
 
-        <div className="hidden lg:flex flex-1 justify-center gap-12 font-headline-lg uppercase tracking-[0.2em] text-xs">
+        <div className="hidden md:flex flex-1 justify-center gap-12 font-headline-lg uppercase tracking-[0.2em] text-xs">
           {links.map((link) => (
             <button
               key={link.label}
@@ -64,15 +67,15 @@ export default function NavBar() {
 
         <div className="flex justify-end w-40">
           <a
-            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+            href="https://wa.me/573195020806?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] scale-100 active:scale-95 transition-transform rounded-btn btn-lift hidden md:inline-block text-center no-underline"
+            className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] scale-100 active:scale-95 transition-transform rounded-btn btn-lift hidden lg:inline-block text-center no-underline"
           >
             RESERVA AHORA
           </a>
           <button
-            className="md:hidden text-on-surface cursor-pointer bg-transparent border-0"
+            className="lg:hidden text-on-surface cursor-pointer bg-transparent border-0"
             onClick={() => setOpen(!open)}
           >
             {open ? <X size={28} /> : <Menu size={28} />}
@@ -81,7 +84,7 @@ export default function NavBar() {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-zinc-200 px-6 py-8 flex flex-col gap-6 items-center">
+        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-zinc-200 px-6 py-8 flex flex-col gap-6 items-center">
           {links.map((link) => (
             <button
               key={link.label}
@@ -92,7 +95,7 @@ export default function NavBar() {
             </button>
           ))}
           <a
-            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+            href="https://wa.me/573195020806?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}

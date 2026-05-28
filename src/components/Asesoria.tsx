@@ -2,9 +2,9 @@ import Image from "next/image"
 
 export default function Asesoria() {
   return (
-    <section className="py-section-gap bg-background" id="asesoria">
-      <div className="max-w-container-max mx-auto px-margin-edge grid md:grid-cols-2 gap-24 items-center">
-        <div className="h-[500px] overflow-hidden rounded-xl shadow-2xl">
+    <section className="py-section-gap bg-background" id="asesoria" style={{ scrollMarginTop: 100 }}>
+      <div className="max-w-container-max mx-auto px-6 md:px-margin-edge grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+        <div className="h-[300px] md:h-[500px] overflow-hidden rounded-xl shadow-2xl">
           <Image
             alt="Artist working"
             className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"

@@ -4,7 +4,7 @@ export default function Ubicacion() {
   const { address, hours, contact, google, name } = business
 
   return (
-    <section className="py-section-gap px-margin-edge max-w-container-max mx-auto bg-background" id="ubicacion">
+    <section className="py-section-gap px-6 md:px-margin-edge max-w-container-max mx-auto bg-background" id="ubicacion">
       <div className="flex flex-col md:flex-row gap-12 items-center">
         <div className="w-full md:w-1/2">
           <span className="font-label-caps text-label-caps text-secondary mb-4 block uppercase tracking-widest">
@@ -39,7 +39,7 @@ export default function Ubicacion() {
             CÓMO LLEGAR
           </a>
         </div>
-        <div className="w-full md:w-1/2 h-[450px] relative overflow-hidden rounded-xl grayscale hover:grayscale-0 transition-all duration-700">
+        <div className="w-full md:w-1/2 h-[300px] md:h-[450px] relative overflow-hidden rounded-xl grayscale hover:grayscale-0 transition-all duration-700">
           <iframe
             src={google.mapsEmbedUrl}
             width="100%"

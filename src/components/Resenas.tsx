@@ -5,8 +5,13 @@ import { resenas } from "@/data/resenas"
 import { useRef, useState, useEffect, useCallback } from "react"
 
 const AUTO_PLAY_INTERVAL = 4000
-const ITEM_WIDTH = 400
 const GAP = 16
+
+function getCardWidth() {
+  if (typeof document === "undefined") return 416
+  const el = document.querySelector<HTMLDivElement>(".resena-card")
+  return (el?.offsetWidth ?? 400) + GAP
+}
 
 export default function Resenas() {
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -20,24 +25,29 @@ export default function Resenas() {
 
   const itemsPerSet = resenas.length
   const extendedResenas = [...resenas, ...resenas, ...resenas]
-  const totalItemWidth = ITEM_WIDTH + GAP
 
-  const avgRating = Math.round(
-    resenas.reduce((acc, r) => acc + r.rating, 0) / resenas.length
-  )
+  const itemWidth = () => getCardWidth()
+
+  const stopAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+  }, [])
 
   const updateActiveIndex = useCallback(() => {
     const container = scrollRef.current
     if (!container) return
-    const raw = container.scrollLeft / totalItemWidth
+    const w = itemWidth()
+    if (!w) return
+    const raw = container.scrollLeft / w
     const idx = ((Math.round(raw) % itemsPerSet) + itemsPerSet) % itemsPerSet
     setActiveIndex(idx)
-  }, [itemsPerSet, totalItemWidth])
+  }, [itemsPerSet])
 
   const jumpToMiddle = useCallback(() => {
     const container = scrollRef.current
     if (!container) return
-    const oneSetWidth = totalItemWidth * itemsPerSet
+    const w = itemWidth()
+    if (!w) return
+    const oneSetWidth = w * itemsPerSet
     const currentScroll = container.scrollLeft
     if (currentScroll < oneSetWidth) {
       container.style.scrollBehavior = "auto"
@@ -48,32 +58,30 @@ export default function Resenas() {
       container.scrollLeft = currentScroll - oneSetWidth
       container.style.scrollBehavior = "smooth"
     }
-  }, [totalItemWidth, itemsPerSet])
+  }, [itemsPerSet])
 
   const startAutoPlay = useCallback(() => {
     stopAutoPlay()
     autoPlayRef.current = setInterval(() => {
       const container = scrollRef.current
       if (!container || isDragging) return
-      container.scrollBy({ left: totalItemWidth, behavior: "smooth" })
+      const w = itemWidth()
+      if (!w) return
+      container.scrollBy({ left: w, behavior: "smooth" })
       updateActiveIndex()
     }, AUTO_PLAY_INTERVAL)
-  }, [isDragging, totalItemWidth, updateActiveIndex])
-
-  const stopAutoPlay = useCallback(() => {
-    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
-  }, [])
+  }, [isDragging, updateActiveIndex, stopAutoPlay])
 
   useEffect(() => {
     const container = scrollRef.current
     if (container) {
       container.style.scrollBehavior = "auto"
-      container.scrollLeft = totalItemWidth * itemsPerSet
+      container.scrollLeft = itemWidth() * itemsPerSet
       container.style.scrollBehavior = "smooth"
     }
     startAutoPlay()
     return stopAutoPlay
-  }, [startAutoPlay, stopAutoPlay, totalItemWidth, itemsPerSet])
+  }, [startAutoPlay, stopAutoPlay, itemsPerSet])
 
   const handleScroll = useCallback(() => {
     if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
@@ -115,16 +123,19 @@ export default function Resenas() {
     container.style.scrollBehavior = "smooth"
     container.releasePointerCapture(e.pointerId)
     wasDraggedRef.current = true
-    const nearest = Math.round(container.scrollLeft / totalItemWidth)
-    container.scrollLeft = nearest * totalItemWidth
+    const w = itemWidth()
+    if (w) {
+      const nearest = Math.round(container.scrollLeft / w)
+      container.scrollLeft = nearest * w
+    }
     updateActiveIndex()
     jumpToMiddle()
     startAutoPlay()
   }
 
   return (
-    <section className="bg-background py-section-gap" id="resenas">
-      <div className="max-w-container-max mx-auto px-margin-edge">
+    <section className="bg-background py-section-gap" id="resenas" style={{ scrollMarginTop: 100 }}>
+      <div className="max-w-container-max mx-auto px-6 md:px-margin-edge">
         <div className="flex flex-col items-center mb-12">
           <div className="flex gap-1 text-amber-500 mb-4">
             {Array.from({ length: 5 }).map((_, i) => (
@@ -151,8 +162,7 @@ export default function Resenas() {
             {extendedResenas.map((resena, i) => (
               <div
                 key={`${resena.author}-${i}`}
-                className="bg-white p-8 md:p-12 rounded-xl shadow-sm flex flex-col justify-between shrink-0 select-none"
-                style={{ width: `${ITEM_WIDTH}px` }}
+                className="resena-card bg-white p-8 md:p-12 rounded-xl shadow-sm flex flex-col justify-between shrink-0 select-none w-[85vw] md:w-[400px]"
               >
                 <div>
                   <div className="flex gap-0.5 text-amber-500 mb-4">
