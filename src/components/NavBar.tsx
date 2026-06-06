@@ -43,7 +43,7 @@ export default function NavBar() {
     >
       <div className="flex justify-between items-center px-6 md:px-12 py-6 max-w-[1440px] mx-auto h-24">
         <div
-          className="flex items-center w-40 z-[60] bg-black/90 py-4 px-4 rounded-b-3xl shadow-2xl ml-0 relative top-0"
+          className="flex items-center w-[155px] md:w-40 z-[60] bg-black/90 py-4 px-4 rounded-b-3xl shadow-2xl ml-0 relative top-0"
           style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)" }}
         >
           <img
