@@ -9,7 +9,6 @@ import Contacto from "@/components/Contacto"
 import Ubicacion from "@/components/Ubicacion"
 import Footer from "@/components/Footer"
 import WhatsAppFloat from "@/components/WhatsAppFloat"
-import StickyCTA from "@/components/StickyCTA"
 import AnimatedSection from "@/components/AnimatedSection"
 
 export default function Home() {
@@ -40,7 +39,6 @@ export default function Home() {
       </AnimatedSection>
       <Footer />
       <WhatsAppFloat />
-      <StickyCTA />
     </>
   )
 }
