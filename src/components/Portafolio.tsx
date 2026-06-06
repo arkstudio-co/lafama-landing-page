@@ -19,7 +19,7 @@ export default function Portafolio() {
             <Image
               alt={`Portafolio ${i + 1}`}
               fill
-              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 rounded-xl"
+              className="object-cover rounded-xl"
               src={src}
               sizes="(max-width: 768px) 85vw, 31vw"
             />
