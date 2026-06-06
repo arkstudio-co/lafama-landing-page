@@ -5,7 +5,7 @@ export default function Contacto() {
   const { contact } = business
 
   return (
-    <section className="py-section-gap bg-surface-container-low border-y border-outline-variant/30" id="contacto" style={{ scrollMarginTop: 100 }}>
+    <section className="py-section-gap bg-surface-container-low border-y border-outline-variant/30" id="contacto">
       <div className="max-w-container-max mx-auto px-6 md:px-margin-edge grid md:grid-cols-2 gap-12 md:gap-24">
         <div>
           <span className="font-label-caps text-label-caps text-secondary mb-4 block uppercase tracking-widest">

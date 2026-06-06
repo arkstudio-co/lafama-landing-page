@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function QuienesSomos() {
   return (
-    <section className="py-section-gap bg-surface-container-low" id="quienes-somos" style={{ scrollMarginTop: 100 }}>
+    <section className="py-section-gap bg-surface-container-low" id="quienes-somos">
       <div className="max-w-container-max mx-auto px-6 md:px-margin-edge grid md:grid-cols-2 gap-12 md:gap-24 items-center">
         <div className="order-2 md:order-1">
           <h2 className="section-title mb-8 tracking-widest">LA FAMA TATTOO ESTUDIO</h2>

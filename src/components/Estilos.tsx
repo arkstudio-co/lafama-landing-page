@@ -3,7 +3,7 @@ import { estilos } from "@/data/estilos"
 
 export default function Estilos() {
   return (
-    <section className="py-section-gap px-6 md:px-margin-edge max-w-container-max mx-auto" id="estilos" style={{ scrollMarginTop: 100 }}>
+    <section className="py-section-gap px-6 md:px-margin-edge max-w-container-max mx-auto" id="estilos">
       <div className="flex flex-col md:flex-row justify-between items-end mb-16">
         <div className="max-w-xl">
           <span className="font-label-caps text-label-caps text-secondary mb-4 block uppercase tracking-widest">

@@ -134,7 +134,7 @@ export default function Resenas() {
   }
 
   return (
-    <section className="bg-background py-section-gap" id="resenas" style={{ scrollMarginTop: 100 }}>
+    <section className="bg-background py-section-gap" id="resenas">
       <div className="max-w-container-max mx-auto px-6 md:px-margin-edge">
         <div className="flex flex-col items-center mb-12">
           <div className="flex gap-1 text-amber-500 mb-4">

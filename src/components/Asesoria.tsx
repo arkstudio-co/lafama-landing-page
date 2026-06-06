@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function Asesoria() {
   return (
-    <section className="py-section-gap bg-background" id="asesoria" style={{ scrollMarginTop: 100 }}>
+    <section className="py-section-gap bg-background" id="asesoria">
       <div className="max-w-container-max mx-auto px-6 md:px-margin-edge grid md:grid-cols-2 gap-12 md:gap-24 items-center">
         <div className="h-[300px] md:h-[500px] overflow-hidden rounded-xl shadow-2xl">
           <Image
