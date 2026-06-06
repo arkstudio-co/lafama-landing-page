@@ -1,6 +1,5 @@
 import NavBar from "@/components/NavBar"
 import Hero from "@/components/Hero"
-import SocialProof from "@/components/SocialProof"
 import Estilos from "@/components/Estilos"
 import QuienesSomos from "@/components/QuienesSomos"
 import Resenas from "@/components/Resenas"
@@ -18,7 +17,6 @@ export default function Home() {
     <>
       <NavBar />
       <Hero />
-      <SocialProof />
       <AnimatedSection>
         <Estilos />
       </AnimatedSection>
