@@ -142,7 +142,7 @@ export default function Resenas() {
               <Star key={i} size={24} fill="currentColor" />
             ))}
           </div>
-          <h2 className="section-title text-center">Testimonios</h2>
+          <h2 className="section-title text-center">OPINIONES</h2>
         </div>
 
         <div
