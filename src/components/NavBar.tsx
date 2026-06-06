@@ -1,24 +1,11 @@
 "use client"
 
 import { Menu, X } from "lucide-react"
-import { useEffect, useState } from "react"
-
-const links = [
-  { href: "#", label: "HOME" },
-  { href: "#estilos", label: "ESTILOS" },
-  { href: "#quienes-somos", label: "NOSOTROS" },
-  { href: "#contacto", label: "CONTACTO" },
-]
+import { useState } from "react"
+import { navLinks as links } from "@/data/navigation"
 
 export default function NavBar() {
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
 
   const handleClick = (href: string) => {
     setOpen(false)
@@ -34,21 +21,15 @@ export default function NavBar() {
   }
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-zinc-200/50"
-          : "bg-[#F5F5F0]/80 backdrop-blur-sm border-b border-transparent"
-      }`}
-    >
+    <nav className="w-full bg-[#F5F5F0]/80 backdrop-blur-sm border-b border-zinc-200/50">
       <div className="flex justify-between items-center px-6 md:px-12 py-6 max-w-[1440px] mx-auto h-24">
         <div
-          className="flex items-center w-40 z-[60] bg-black/90 py-4 px-4 rounded-b-3xl shadow-2xl ml-0 relative top-0"
+          className="flex items-center w-28 md:w-40 z-[60] bg-black/90 py-4 px-4 rounded-b-3xl shadow-2xl ml-0 relative top-0"
           style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)" }}
         >
           <img
             alt="LaFama Logo"
-            className="w-full pt-[60px] md:pt-[90px]"
+            className="w-full pt-10 md:pt-[90px]"
             src="/images/logo.png"
           />
         </div>
