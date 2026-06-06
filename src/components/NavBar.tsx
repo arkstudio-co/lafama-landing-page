@@ -24,8 +24,7 @@ export default function NavBar() {
     <nav className="w-full bg-[#F5F5F0]/80 backdrop-blur-sm border-b border-zinc-200/50">
       <div className="flex justify-between items-center px-6 md:px-12 py-6 max-w-[1440px] mx-auto h-24">
         <div
-          className="flex items-center w-28 md:w-40 z-[60] bg-black/90 py-4 px-4 rounded-b-3xl shadow-2xl ml-0 relative top-0"
-          style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)" }}
+          className="flex items-center w-28 md:w-40 z-[60] bg-black/90 py-4 px-4 rounded-b-3xl shadow-2xl ml-0 relative top-0 logo-clip"
         >
           <img
             alt="LaFama Logo"
