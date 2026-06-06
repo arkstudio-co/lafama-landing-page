@@ -4,7 +4,7 @@ export default function Ubicacion() {
   const { address, hours, contact, google, name } = business
 
   return (
-    <section className="py-section-gap px-6 md:px-margin-edge max-w-container-max mx-auto bg-background" id="ubicacion" style={{ scrollMarginTop: 100 }}>
+    <section className="py-section-gap px-6 md:px-margin-edge max-w-container-max mx-auto bg-background" id="ubicacion">
       <div className="flex flex-col md:flex-row gap-12 items-center">
         <div className="w-full md:w-1/2">
           <span className="font-label-caps text-label-caps text-secondary mb-4 block uppercase tracking-widest">
