@@ -53,7 +53,7 @@ export default function NavBar() {
 
         <div className="flex justify-end w-40">
           <a
-            href="https://wa.me/573195020806?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] scale-100 active:scale-95 transition-transform rounded-btn btn-lift hidden lg:inline-block text-center no-underline"
@@ -81,7 +81,7 @@ export default function NavBar() {
             </button>
           ))}
           <a
-            href="https://wa.me/573195020806?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}

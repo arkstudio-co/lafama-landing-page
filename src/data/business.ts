@@ -85,7 +85,7 @@ export const business: BusinessInfo = {
   contact: {
     phone: "3188433214",
     phoneDisplay: "318 843 32 14",
-    whatsapp: "573195020806",
+    whatsapp: "573188433214",
     email: "tattolafama@gmail.com",
   },
 

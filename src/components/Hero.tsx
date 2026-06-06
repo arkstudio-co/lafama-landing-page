@@ -24,7 +24,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-6 justify-center hero-cta">
           <a
             className="inline-block bg-white text-black px-12 py-5 font-label-caps text-sm tracking-[0.2em] hover:bg-white/90 transition-all duration-500 uppercase rounded-btn btn-lift"
-            href="https://wa.me/573195020806?text=Hola!%20Quiero%20cotizar%20un%20tattoo"
+            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -32,7 +32,7 @@ export default function Hero() {
           </a>
           <a
             className="inline-block bg-white/10 backdrop-blur-md border border-white/30 text-white px-12 py-5 font-label-caps text-sm tracking-[0.2em] hover:bg-white/20 transition-all duration-500 uppercase rounded-btn btn-lift hero-cta-secondary"
-            href="https://wa.me/573195020806?text=Hola!%20Voy%20en%20camino%20a%20tu%20estudio"
+            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
             target="_blank"
             rel="noopener noreferrer"
           >
