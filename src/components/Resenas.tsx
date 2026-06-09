@@ -101,6 +101,7 @@ export default function Resenas() {
     stopAutoPlay()
     container.style.scrollSnapType = "none"
     container.style.scrollBehavior = "auto"
+    container.style.touchAction = "none"
     container.setPointerCapture(e.pointerId)
     dragStartRef.current = e.clientX
     scrollStartRef.current = container.scrollLeft
@@ -119,10 +120,11 @@ export default function Resenas() {
     const container = scrollRef.current
     if (!container) return
     setIsDragging(false)
+    wasDraggedRef.current = true
     container.style.scrollSnapType = "x mandatory"
     container.style.scrollBehavior = "smooth"
+    container.style.touchAction = ""
     container.releasePointerCapture(e.pointerId)
-    wasDraggedRef.current = true
     const w = itemWidth()
     if (w) {
       const nearest = Math.round(container.scrollLeft / w)

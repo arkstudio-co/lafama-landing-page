@@ -148,6 +148,8 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  touch-action: pan-y pinch-zoom;
+  overscroll-behavior: none;
 }
 
 .carousel-item {
