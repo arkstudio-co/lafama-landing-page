@@ -265,6 +265,7 @@
 
 .noise-overlay {
   position: relative;
+  isolation: isolate;
 }
 
 .noise-overlay::after {

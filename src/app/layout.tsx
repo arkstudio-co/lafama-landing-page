@@ -43,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${notoSerif.variable} ${manrope.variable}`}>
+    <html lang="es" className={`${notoSerif.variable} ${manrope.variable} overflow-x-hidden`}>
       <body className="bg-background text-on-background font-body-md overflow-x-hidden antialiased">
         {children}
       </body>

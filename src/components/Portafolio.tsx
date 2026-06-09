@@ -156,7 +156,7 @@ export default function Portafolio() {
       </div>
       <div
         ref={scrollRef}
-        className="carousel-container no-scrollbar gap-6 px-12 md:px-[5%] group/carousel cursor-grab active:cursor-grabbing"
+        className="carousel-container no-scrollbar gap-6 px-6 md:px-[5%] group/carousel cursor-grab active:cursor-grabbing"
         style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}
         onScroll={handleScroll}
         onPointerDown={handlePointerDown}
