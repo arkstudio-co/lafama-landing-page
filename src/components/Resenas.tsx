@@ -4,7 +4,6 @@ import { Star } from "lucide-react"
 import { resenas } from "@/data/resenas"
 import { useRef, useState, useEffect, useCallback } from "react"
 
-const AUTO_PLAY_INTERVAL = 4000
 const GAP = 16
 
 function getCardWidth() {
@@ -15,7 +14,6 @@ function getCardWidth() {
 
 export default function Resenas() {
   const scrollRef = useRef<HTMLDivElement>(null)
-  const autoPlayRef = useRef<ReturnType<typeof setInterval>>(undefined)
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const [isDragging, setIsDragging] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -27,10 +25,6 @@ export default function Resenas() {
   const extendedResenas = [...resenas, ...resenas, ...resenas]
 
   const itemWidth = () => getCardWidth()
-
-  const stopAutoPlay = useCallback(() => {
-    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
-  }, [])
 
   const updateActiveIndex = useCallback(() => {
     const container = scrollRef.current
@@ -60,18 +54,6 @@ export default function Resenas() {
     }
   }, [itemsPerSet])
 
-  const startAutoPlay = useCallback(() => {
-    stopAutoPlay()
-    autoPlayRef.current = setInterval(() => {
-      const container = scrollRef.current
-      if (!container || isDragging) return
-      const w = itemWidth()
-      if (!w) return
-      container.scrollBy({ left: w, behavior: "smooth" })
-      updateActiveIndex()
-    }, AUTO_PLAY_INTERVAL)
-  }, [isDragging, updateActiveIndex, stopAutoPlay])
-
   useEffect(() => {
     const container = scrollRef.current
     if (container) {
@@ -79,9 +61,7 @@ export default function Resenas() {
       container.scrollLeft = itemWidth() * itemsPerSet
       container.style.scrollBehavior = "smooth"
     }
-    startAutoPlay()
-    return stopAutoPlay
-  }, [startAutoPlay, stopAutoPlay, itemsPerSet])
+  }, [itemsPerSet])
 
   const handleScroll = useCallback(() => {
     if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
@@ -98,7 +78,6 @@ export default function Resenas() {
     const container = scrollRef.current
     if (!container) return
     setIsDragging(true)
-    stopAutoPlay()
     container.style.scrollSnapType = "none"
     container.style.scrollBehavior = "auto"
     container.style.touchAction = "none"
@@ -132,7 +111,6 @@ export default function Resenas() {
     }
     updateActiveIndex()
     jumpToMiddle()
-    startAutoPlay()
   }
 
   return (

@@ -5,7 +5,6 @@ import { portafolio } from "@/data/portafolio"
 import { useRef, useState, useEffect, useCallback } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
-const AUTO_PLAY_INTERVAL = 4000
 const GAP = 24
 
 function getCardWidth() {
@@ -16,7 +15,6 @@ function getCardWidth() {
 
 export default function Portafolio() {
   const scrollRef = useRef<HTMLDivElement>(null)
-  const autoPlayRef = useRef<ReturnType<typeof setInterval>>(undefined)
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const [isDragging, setIsDragging] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -29,10 +27,6 @@ export default function Portafolio() {
   const extendedPortafolio = [...portafolio, ...portafolio, ...portafolio]
 
   const itemWidth = () => getCardWidth()
-
-  const stopAutoPlay = useCallback(() => {
-    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
-  }, [])
 
   const updateActiveIndex = useCallback(() => {
     const container = scrollRef.current
@@ -62,18 +56,6 @@ export default function Portafolio() {
     }
   }, [itemsPerSet])
 
-  const startAutoPlay = useCallback(() => {
-    stopAutoPlay()
-    autoPlayRef.current = setInterval(() => {
-      const container = scrollRef.current
-      if (!container || isDragging) return
-      const w = itemWidth()
-      if (!w) return
-      container.scrollBy({ left: w, behavior: "smooth" })
-      updateActiveIndex()
-    }, AUTO_PLAY_INTERVAL)
-  }, [isDragging, updateActiveIndex, stopAutoPlay])
-
   useEffect(() => {
     const container = scrollRef.current
     if (container) {
@@ -81,9 +63,7 @@ export default function Portafolio() {
       container.scrollLeft = itemWidth() * itemsPerSet
       container.style.scrollBehavior = "smooth"
     }
-    startAutoPlay()
-    return stopAutoPlay
-  }, [startAutoPlay, stopAutoPlay, itemsPerSet])
+  }, [itemsPerSet])
 
   const handleScroll = useCallback(() => {
     if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
@@ -100,7 +80,6 @@ export default function Portafolio() {
     const container = scrollRef.current
     if (!container) return
     setIsDragging(true)
-    stopAutoPlay()
     container.style.scrollSnapType = "none"
     container.style.scrollBehavior = "auto"
     container.style.touchAction = "none"
@@ -134,17 +113,14 @@ export default function Portafolio() {
     }
     updateActiveIndex()
     jumpToMiddle()
-    startAutoPlay()
   }
 
   const openLightbox = (index: number) => {
-    stopAutoPlay()
     setLightboxIndex(index)
   }
 
   const closeLightbox = () => {
     setLightboxIndex(null)
-    startAutoPlay()
   }
 
   const goToPrev = (e: React.MouseEvent) => {
