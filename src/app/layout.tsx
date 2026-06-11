@@ -19,6 +19,12 @@ export const metadata: Metadata = {
   title: "La Fama Tattoo Studio | El Poblado, Medellín",
   description:
     "Tatúate con expertos en el corazón de Medellín. Realismo, Fine Line, Neotradicional y Blackwork. Atención personalizada y altos estándares de higiene.",
+  icons: {
+    icon: "/images/logo-circulo.png",
+  },
+  verification: {
+    google: "F5Ftr_OEJA9wLNWYkpMRtMUbB4An4V821V6mhHfz2fU",
+  },
   robots: "index, follow",
   openGraph: {
     title: "La Fama Tattoo Studio",
