@@ -3,8 +3,11 @@
 import { business } from "@/data/business"
 
 export default function WhatsAppFloat() {
-  const handleClick = () => {
-    window.dataLayer?.push({ event: "JoinChats" })
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({ event: "JoinChats" })
+    window.open(e.currentTarget.href, "_blank", "noopener,noreferrer")
   }
 
   return (
