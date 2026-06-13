@@ -62,6 +62,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-PSBKDSBH');`,
         }}
       />
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=AW-18231966537"
+        strategy="beforeInteractive"
+      />
+      <Script
+        id="google-ads-config"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18231966537');
+          `,
+        }}
+      />
       <body className="bg-background text-on-background font-body-md overflow-x-hidden antialiased">
         <noscript>
           <iframe
