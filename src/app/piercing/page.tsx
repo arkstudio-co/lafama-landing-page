@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import NavBar from "@/components/NavBar"
 import PiercingHero from "@/components/PiercingHero"
 import PiercingEstilos from "@/components/PiercingEstilos"
 import PiercingAsesoria from "@/components/PiercingAsesoria"
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
 export default function PiercingPage() {
   return (
     <>
+      <NavBar />
       <PiercingHero />
       <AnimatedSection>
         <PiercingEstilos />
