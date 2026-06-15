@@ -2,19 +2,29 @@
 
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
-const links = [
+const defaultLinks = [
   { href: "#", label: "HOME" },
   { href: "#estilos", label: "ESTILOS" },
   { href: "#quienes-somos", label: "NOSOTROS" },
   { href: "#contacto", label: "CONTACTO" },
 ]
 
-export default function NavBar() {
+type NavBarProps = {
+  links?: { href: string; label: string }[]
+}
+
+export default function NavBar({ links = defaultLinks }: NavBarProps) {
+  const router = useRouter()
   const [open, setOpen] = useState(false)
 
   const handleClick = (href: string) => {
     setOpen(false)
+    if (href.startsWith("/")) {
+      router.push(href)
+      return
+    }
     if (href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" })
       return

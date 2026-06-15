@@ -5,7 +5,7 @@ import PiercingEstilos from "@/components/PiercingEstilos"
 import PiercingAsesoria from "@/components/PiercingAsesoria"
 import PiercingGaleria from "@/components/PiercingGaleria"
 import PiercingAgendar from "@/components/PiercingAgendar"
-import Contacto from "@/components/Contacto"
+import PiercingContacto from "@/components/PiercingContacto"
 import Ubicacion from "@/components/Ubicacion"
 import Footer from "@/components/Footer"
 import WhatsAppFloat from "@/components/WhatsAppFloat"
@@ -36,7 +36,14 @@ export const metadata: Metadata = {
 export default function PiercingPage() {
   return (
     <>
-      <NavBar />
+      <NavBar
+        links={[
+          { href: "/", label: "HOME" },
+          { href: "#estilos-perforacion", label: "ESTILOS" },
+          { href: "#quienes-somos", label: "NOSOTROS" },
+          { href: "#contacto", label: "CONTACTO" },
+        ]}
+      />
       <PiercingHero />
       <AnimatedSection>
         <PiercingEstilos />
@@ -51,7 +58,7 @@ export default function PiercingPage() {
         <PiercingAgendar />
       </AnimatedSection>
       <AnimatedSection>
-        <Contacto />
+        <PiercingContacto />
       </AnimatedSection>
       <AnimatedSection animation="fade-up">
         <Ubicacion />
