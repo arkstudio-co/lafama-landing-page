@@ -28,6 +28,6 @@ export const piercingTipos: PiercingTipo[] = [
 ]
 
 export const piercingGaleria: string[] = Array.from(
-  { length: 30 },
-  (_, i) => `/images/perfo/perfo${i + 1}.jpg`,
+  { length: 15 },
+  (_, i) => `/images/perfo/portafolio${i + 1}.jpg`,
 )
