@@ -43,6 +43,7 @@ export default function PiercingPage() {
           { href: "#quienes-somos", label: "NOSOTROS" },
           { href: "#contacto", label: "CONTACTO" },
         ]}
+        whatsappMessage="Hola!%20Quiero%20agendar%20mi%20perforaci%C3%B3n"
       />
       <PiercingHero />
       <AnimatedSection>

@@ -13,9 +13,13 @@ const defaultLinks = [
 
 type NavBarProps = {
   links?: { href: string; label: string }[]
+  whatsappMessage?: string
 }
 
-export default function NavBar({ links = defaultLinks }: NavBarProps) {
+const DEFAULT_WA_MSG = "Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+const WA_NUMBER = "573188433214"
+
+export default function NavBar({ links = defaultLinks, whatsappMessage = DEFAULT_WA_MSG }: NavBarProps) {
   const router = useRouter()
   const [open, setOpen] = useState(false)
 
@@ -63,7 +67,7 @@ export default function NavBar({ links = defaultLinks }: NavBarProps) {
 
         <div className="flex justify-end w-40">
           <a
-            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+            href={`https://wa.me/${WA_NUMBER}?text=${whatsappMessage}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary text-on-primary px-10 py-4 font-label-caps text-sm tracking-[0.2em] scale-100 active:scale-95 transition-transform rounded-btn btn-lift hidden lg:inline-block text-center no-underline"
@@ -91,7 +95,7 @@ export default function NavBar({ links = defaultLinks }: NavBarProps) {
             </button>
           ))}
           <a
-            href="https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20nuevo%20tattoo"
+            href={`https://wa.me/${WA_NUMBER}?text=${whatsappMessage}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
