@@ -7,7 +7,7 @@ export default function PiercingHero() {
         alt="Perforación profesional"
         fill
         className="object-cover brightness-[0.45] grayscale-[0.25]"
-        src="/images/perfo/perfo1.jpg"
+        src="/images/perfo/hero.jpg"
         sizes="100vw"
         quality={100}
         preload

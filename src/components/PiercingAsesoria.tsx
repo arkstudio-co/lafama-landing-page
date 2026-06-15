@@ -8,7 +8,7 @@ export default function PiercingAsesoria() {
           <Image
             alt="Asesoría de perforación"
             className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-            src="/images/perfo/perfo6.jpg"
+            src="/images/perfo/perfo1.jpg"
             width={800}
             height={500}
           />
