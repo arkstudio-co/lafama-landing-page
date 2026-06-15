@@ -5,6 +5,7 @@ import PiercingEstilos from "@/components/PiercingEstilos"
 import PiercingAsesoria from "@/components/PiercingAsesoria"
 import PiercingGaleria from "@/components/PiercingGaleria"
 import PiercingAgendar from "@/components/PiercingAgendar"
+import Contacto from "@/components/Contacto"
 import Ubicacion from "@/components/Ubicacion"
 import Footer from "@/components/Footer"
 import WhatsAppFloat from "@/components/WhatsAppFloat"
@@ -48,6 +49,9 @@ export default function PiercingPage() {
       </AnimatedSection>
       <AnimatedSection>
         <PiercingAgendar />
+      </AnimatedSection>
+      <AnimatedSection>
+        <Contacto />
       </AnimatedSection>
       <AnimatedSection animation="fade-up">
         <Ubicacion />
