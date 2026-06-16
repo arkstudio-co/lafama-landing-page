@@ -181,17 +181,6 @@ export default function Portafolio() {
         ))}
       </div>
 
-      <div className="flex justify-center gap-2 mt-8">
-        {portafolio.map((_, i) => (
-          <div
-            key={i}
-            className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-              i === activeIndex ? "bg-primary" : "bg-primary/30"
-            }`}
-          />
-        ))}
-      </div>
-
       {lightboxIndex !== null && (
         <div
           className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center"
