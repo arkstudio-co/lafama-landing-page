@@ -22,6 +22,7 @@ export default function Portafolio() {
   const dragStartRef = useRef(0)
   const scrollStartRef = useRef(0)
   const wasDraggedRef = useRef(false)
+  const isTouchDragRef = useRef(false)
 
   const itemsPerSet = portafolio.length
   const extendedPortafolio = [...portafolio, ...portafolio, ...portafolio]
@@ -80,9 +81,18 @@ export default function Portafolio() {
     const container = scrollRef.current
     if (!container) return
     setIsDragging(true)
-    container.style.scrollSnapType = "none"
-    container.style.scrollBehavior = "auto"
-    container.style.touchAction = "none"
+    isTouchDragRef.current = e.pointerType === "touch"
+
+    if (isTouchDragRef.current) {
+      container.style.scrollSnapType = ""
+      container.style.scrollBehavior = ""
+      container.style.touchAction = ""
+    } else {
+      container.style.scrollSnapType = "none"
+      container.style.scrollBehavior = "auto"
+      container.style.touchAction = "none"
+    }
+
     container.setPointerCapture(e.pointerId)
     dragStartRef.current = e.clientX
     scrollStartRef.current = container.scrollLeft
@@ -93,8 +103,13 @@ export default function Portafolio() {
     e.preventDefault()
     const container = scrollRef.current
     if (!container) return
-    const delta = e.clientX - dragStartRef.current
-    container.scrollLeft = scrollStartRef.current - delta
+
+    if (isTouchDragRef.current) {
+      scrollStartRef.current = container.scrollLeft
+    } else {
+      const delta = e.clientX - dragStartRef.current
+      container.scrollLeft = scrollStartRef.current - delta
+    }
   }
 
   const handlePointerUp = (e: React.PointerEvent) => {
@@ -102,15 +117,19 @@ export default function Portafolio() {
     if (!container) return
     setIsDragging(false)
     wasDraggedRef.current = true
-    container.style.scrollSnapType = "x mandatory"
-    container.style.scrollBehavior = "smooth"
-    container.style.touchAction = ""
-    container.releasePointerCapture(e.pointerId)
-    const w = itemWidth()
-    if (w) {
-      const nearest = Math.round(container.scrollLeft / w)
-      container.scrollLeft = nearest * w
+
+    if (!isTouchDragRef.current) {
+      container.style.scrollSnapType = "x mandatory"
+      container.style.scrollBehavior = "smooth"
+      container.style.touchAction = ""
+      const w = itemWidth()
+      if (w) {
+        const nearest = Math.round(container.scrollLeft / w)
+        container.scrollLeft = nearest * w
+      }
     }
+
+    container.releasePointerCapture(e.pointerId)
     updateActiveIndex()
     jumpToMiddle()
   }
@@ -157,7 +176,6 @@ export default function Portafolio() {
       <div
         ref={scrollRef}
         className="carousel-container no-scrollbar gap-6 px-6 md:px-[5%] group/carousel cursor-grab active:cursor-grabbing"
-        style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}
         onScroll={handleScroll}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
