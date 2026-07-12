@@ -9,7 +9,6 @@ import PiercingContacto from "@/components/PiercingContacto"
 import Ubicacion from "@/components/Ubicacion"
 import Footer from "@/components/Footer"
 import WhatsAppFloat from "@/components/WhatsAppFloat"
-import StickyCTA from "@/components/StickyCTA"
 import AnimatedSection from "@/components/AnimatedSection"
 
 export const metadata: Metadata = {
@@ -66,7 +65,6 @@ export default function PiercingPage() {
       </AnimatedSection>
       <Footer />
       <WhatsAppFloat />
-      <StickyCTA />
     </>
   )
 }
