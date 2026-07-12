@@ -194,12 +194,12 @@
   .whatsapp-float {
     bottom: 24px;
     right: 16px;
-    width: 60px;
-    height: 60px;
+    width: 72px;
+    height: 72px;
   }
   .whatsapp-float svg {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
   }
 }
 
