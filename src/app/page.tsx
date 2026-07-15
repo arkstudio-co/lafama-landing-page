@@ -6,6 +6,7 @@ import Resenas from "@/components/Resenas"
 import Portafolio from "@/components/Portafolio"
 import Asesoria from "@/components/Asesoria"
 import Contacto from "@/components/Contacto"
+import PiercingSection from "@/components/PiercingSection"
 import Ubicacion from "@/components/Ubicacion"
 import Footer from "@/components/Footer"
 import WhatsAppFloat from "@/components/WhatsAppFloat"
@@ -33,6 +34,9 @@ export default function Home() {
       </AnimatedSection>
       <AnimatedSection>
         <Contacto />
+      </AnimatedSection>
+      <AnimatedSection animation="scale-in">
+        <PiercingSection />
       </AnimatedSection>
       <AnimatedSection animation="fade-up">
         <Ubicacion />

@@ -51,34 +51,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${notoSerif.variable} ${manrope.variable} overflow-x-hidden`}>
-      <Script
-        id="gtm-script"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      <body className="bg-background text-on-background font-body-md overflow-x-hidden antialiased">
+        <Script
+          id="gtm-script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-PSBKDSBH');`,
-        }}
-      />
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=AW-18231966537"
-        strategy="beforeInteractive"
-      />
-      <Script
-        id="google-ads-config"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
+          }}
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18231966537"
+          strategy="beforeInteractive"
+        />
+        <Script
+          id="google-ads-config"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-18231966537');
-          `,
-        }}
-      />
-      <body className="bg-background text-on-background font-body-md overflow-x-hidden antialiased">
+            `,
+          }}
+        />
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-PSBKDSBH"
