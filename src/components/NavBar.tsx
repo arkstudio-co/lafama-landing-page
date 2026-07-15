@@ -8,6 +8,7 @@ const defaultLinks = [
   { href: "#", label: "HOME" },
   { href: "#estilos", label: "ESTILOS" },
   { href: "#quienes-somos", label: "NOSOTROS" },
+  { href: "#piercing", label: "PIERCING" },
   { href: "#contacto", label: "CONTACTO" },
 ]
 
