@@ -217,6 +217,43 @@
   border-width: 0;
 }
 
+/* ─── Safe area bottom ─── */
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ─── Reduced motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-headline,
+  .hero-subtitle,
+  .hero-cta,
+  .hero-cta-secondary {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .animate-fade-up,
+  .animate-scale-in,
+  .animate-slide-left,
+  .animate-slide-right {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .btn-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .stat-number {
+    animation: none;
+  }
+}
+
 /* ─── Scroll-triggered animations ─── */
 
 .animate-fade-up {
