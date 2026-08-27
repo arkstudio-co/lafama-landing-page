@@ -10,7 +10,7 @@ export const estilos: Estilo[] = [
   },
   {
     name: "Fine Line",
-    image: "/images/fineline-estilo.jpg",
+    image: "/images/portafolio/9.jpg",
   },
   {
     name: "Neotradicional",
@@ -18,6 +18,6 @@ export const estilos: Estilo[] = [
   },
   {
     name: "Anime",
-    image: "/images/anime-estilo.jpg",
+    image: "/images/portafolio/39.jpg",
   },
 ]
