@@ -4,10 +4,10 @@ import Image from "next/image"
 import { useTranslations } from "@/i18n"
 
 const experienceImages = [
-  { src: "/images/asesoria-image.jpg", alt: "Tattoo consultation" },
   { src: "/images/somos.png", alt: "La Fama artist" },
-  { src: "/images/IMG_2188.jpg", alt: "Studio experience" },
-  { src: "/images/IMG_7135.jpg", alt: "Comfortable environment" },
+  { src: "/images/asesoria-image.jpg", alt: "Tattoo consultation" },
+  { src: "/images/IMG_3205.PNG", alt: "Studio experience" },
+  { src: "/images/CB69FAC2-7220-4B79-AA73-1F1687A916FE.jpg", alt: "Comfortable environment" },
 ]
 
 export default function LandingExperience() {

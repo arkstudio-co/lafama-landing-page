@@ -5,9 +5,9 @@ import { useTranslations } from "@/i18n"
 
 const styleImages = [
   { src: "/images/realismo-estilo.jpeg", alt: "Realism tattoo" },
-  { src: "/images/portafolio/15.jpeg", alt: "Fine line tattoo" },
+  { src: "/images/portafolio/13.jpg", alt: "Fine line tattoo" },
   { src: "/images/neotradicional-estilo.png", alt: "Neotraditional tattoo" },
-  { src: "/images/portafolio/30.jpeg", alt: "Anime tattoo" },
+  { src: "/images/portafolio/39.jpg", alt: "Anime tattoo" },
 ]
 
 const styleKeys = ["realism", "fineLine", "neotraditional", "anime"] as const
