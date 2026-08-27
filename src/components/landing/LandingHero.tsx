@@ -19,7 +19,7 @@ export default function LandingHero() {
         alt="La Fama Tattoo Studio - Professional tattoo artist at work"
         fill
         className="object-cover brightness-[0.4] grayscale-[0.2]"
-        src="/images/IMG_1832.jpg"
+        src="/images/hero-image.JPG"
         sizes="100vw"
         quality={90}
         priority
