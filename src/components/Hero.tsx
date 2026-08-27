@@ -10,7 +10,7 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full object-cover brightness-[0.45] grayscale-[0.25]"
         src="/videos/video-hero.mp4"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/50 pointer-events-none z-[1]" />
       <div className="relative z-10 text-center px-4 max-w-4xl mt-16 md:mt-24">
         <h1 className="font-display-lg text-4xl md:text-5xl lg:text-6xl leading-[1.15] text-white mb-6 uppercase hero-headline">
           TATÚATE CON EXPERTOS EN EL CORAZÓN DE MEDELLÍN
