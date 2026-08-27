@@ -8,12 +8,7 @@ export default function LandingLocation() {
   const { t } = useTranslations()
   const { address, google } = business
 
-  const scrollToForm = () => {
-    if (typeof window !== "undefined" && window.dataLayer) {
-      window.dataLayer.push({ event: "cta_click", cta_name: "location_availability" })
-    }
-    document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth" })
-  }
+  const whatsappUrl = "https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20proximo%20tattoo"
 
   const handleDirectionsClick = () => {
     if (typeof window !== "undefined" && window.dataLayer) {
@@ -60,12 +55,14 @@ export default function LandingLocation() {
               >
                 {t.location.getDirections}
               </a>
-              <button
-                onClick={scrollToForm}
-                className="inline-block bg-primary text-on-primary px-8 py-3.5 font-label-caps text-[11px] tracking-[0.15em] hover:bg-zinc-800 transition-all duration-300 uppercase rounded-btn btn-lift cursor-pointer border-0 text-center"
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-primary text-on-primary px-8 py-3.5 font-label-caps text-[11px] tracking-[0.15em] hover:bg-zinc-800 transition-all duration-300 uppercase rounded-btn btn-lift text-center"
               >
                 {t.location.checkAvailability}
-              </button>
+              </a>
             </div>
           </div>
 

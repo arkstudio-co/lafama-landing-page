@@ -75,7 +75,7 @@ export default function LandingFooter() {
                 </svg>
               </a>
               <a
-                href={google.mapsUrl}
+                href={google.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-surface-container-high rounded-full flex items-center justify-center text-secondary hover:bg-on-surface hover:text-background transition-colors"
@@ -94,9 +94,16 @@ export default function LandingFooter() {
               {t.footer.findUs}
             </h4>
             <div className="space-y-2 font-body-md text-xs text-secondary tracking-wide">
-              <p>{address.street}</p>
-              <p>{address.neighborhood}, {address.city}</p>
-              <p>{address.department}, {address.country}</p>
+              <a
+                href={google.directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:text-on-surface transition-colors"
+              >
+                <p>{address.street}</p>
+                <p>{address.neighborhood}, {address.city}</p>
+                <p>{address.department}, {address.country}</p>
+              </a>
             </div>
           </div>
 

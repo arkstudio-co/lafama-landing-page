@@ -109,7 +109,7 @@ export const business: BusinessInfo = {
     mapsEmbedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15866.22493062!2d-75.571682!3d6.2097068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44295a5a318455%3A0x8152fc21be642c3f!2sLa%20Fama%20Tattoo%20Estudio!5e0!3m2!1ses!2sco!4v1",
     directionsUrl:
-      "https://www.google.com/maps/dir//La+Fama+Tattoo+Estudio,+Cra.+43B+%238-31,+El+Poblado,+Medell%C3%ADn,+Antioquia",
+      "https://share.google/IpySqOSvUzfpU09sQ",
     reviewsUrl:
       "https://search.google.com/local/reviews?placeid=ChIJVYQxWlopRI4RPyxkviH8UoE&q=La+Fama+Tattoo+Estudio&hl=es&gl=CO",
   },

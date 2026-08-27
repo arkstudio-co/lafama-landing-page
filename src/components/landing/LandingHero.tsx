@@ -5,12 +5,7 @@ import { useTranslations } from "@/i18n"
 export default function LandingHero() {
   const { t } = useTranslations()
 
-  const scrollToForm = () => {
-    if (typeof window !== "undefined" && window.dataLayer) {
-      window.dataLayer.push({ event: "cta_click", cta_name: "hero_quote" })
-    }
-    document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth" })
-  }
+  const whatsappUrl = "https://wa.me/573188433214?text=Hola!%20Quiero%20cotizar%20mi%20proximo%20tattoo"
 
   return (
     <section className="relative h-[85vh] md:h-screen w-full overflow-hidden flex items-center justify-center noise-overlay">
@@ -31,12 +26,14 @@ export default function LandingHero() {
           {t.hero.subtitle}
         </p>
         <div className="hero-cta">
-          <button
-            onClick={scrollToForm}
-            className="inline-block bg-white text-black px-8 py-4 md:px-12 md:py-5 font-label-caps text-[11px] md:text-xs tracking-[0.2em] hover:bg-white/90 transition-all duration-500 uppercase rounded-btn btn-lift cursor-pointer border-0"
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-black px-8 py-4 md:px-12 md:py-5 font-label-caps text-[11px] md:text-xs tracking-[0.2em] hover:bg-white/90 transition-all duration-500 uppercase rounded-btn btn-lift"
           >
             {t.hero.cta}
-          </button>
+          </a>
         </div>
       </div>
     </section>
