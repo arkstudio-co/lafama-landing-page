@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react"
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react"
 import { en } from "./en"
 import { es } from "./es"
 
@@ -18,24 +18,22 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null)
 
-function getInitialLocale(): Locale {
-  if (typeof window === "undefined") return "es"
-  const stored = localStorage.getItem("lafama-locale") as Locale | null
-  if (stored === "en" || stored === "es") {
-    document.documentElement.lang = stored
-    return stored
-  }
-  const detected = navigator.language.split("-")[0] === "es" ? "es" : "en"
-  document.documentElement.lang = detected
-  return detected
+interface LanguageProviderProps {
+  children: ReactNode
+  initialLocale: Locale
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(getInitialLocale)
+export function LanguageProvider({ children, initialLocale }: LanguageProviderProps) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale)
+
+  useEffect(() => {
+    document.documentElement.lang = locale
+  }, [locale])
 
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale)
     localStorage.setItem("lafama-locale", newLocale)
+    document.cookie = `lafama-locale=${newLocale}; path=/; max-age=31536000; SameSite=Lax`
     document.documentElement.lang = newLocale
   }, [])
 

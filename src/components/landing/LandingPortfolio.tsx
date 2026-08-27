@@ -6,6 +6,8 @@ import { portafolio } from "@/data/portafolio"
 import { useRef, useState, useCallback, useEffect } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
+const GAP = 24
+
 const HEIGHTS = [
   "aspect-[3/4]",
   "aspect-[2/3]",
@@ -15,22 +17,93 @@ const HEIGHTS = [
   "aspect-[2/3]",
 ]
 
+function getCardWidth() {
+  if (typeof document === "undefined") return 400
+  const el = document.querySelector<HTMLDivElement>(".landing-portfolio-card")
+  return (el?.offsetWidth ?? 400) + GAP
+}
+
 export default function LandingPortfolio() {
   const { t } = useTranslations()
   const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const [isDragging, setIsDragging] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const dragStartRef = useRef(0)
   const scrollStartRef = useRef(0)
   const wasDraggedRef = useRef(false)
+  const isTouchDragRef = useRef(false)
+
+  const itemsPerSet = portafolio.length
+  const extendedPortafolio = [...portafolio, ...portafolio, ...portafolio]
+
+  const itemWidth = () => getCardWidth()
+
+  const updateActiveIndex = useCallback(() => {
+    const container = scrollRef.current
+    if (!container) return
+    const w = itemWidth()
+    if (!w) return
+    const raw = container.scrollLeft / w
+    const idx = ((Math.round(raw) % itemsPerSet) + itemsPerSet) % itemsPerSet
+    return idx
+  }, [itemsPerSet])
+
+  const jumpToMiddle = useCallback(() => {
+    const container = scrollRef.current
+    if (!container) return
+    const w = itemWidth()
+    if (!w) return
+    const oneSetWidth = w * itemsPerSet
+    const currentScroll = container.scrollLeft
+    if (currentScroll < oneSetWidth) {
+      container.style.scrollBehavior = "auto"
+      container.scrollLeft = currentScroll + oneSetWidth
+      container.style.scrollBehavior = "smooth"
+    } else if (currentScroll >= oneSetWidth * 2) {
+      container.style.scrollBehavior = "auto"
+      container.scrollLeft = currentScroll - oneSetWidth
+      container.style.scrollBehavior = "smooth"
+    }
+  }, [itemsPerSet])
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (container) {
+      container.style.scrollBehavior = "auto"
+      container.scrollLeft = itemWidth() * itemsPerSet
+      container.style.scrollBehavior = "smooth"
+    }
+  }, [itemsPerSet])
+
+  const handleScroll = useCallback(() => {
+    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+    scrollTimeoutRef.current = setTimeout(() => {
+      if (!wasDraggedRef.current) {
+        updateActiveIndex()
+        jumpToMiddle()
+      }
+      wasDraggedRef.current = false
+    }, 150)
+  }, [updateActiveIndex, jumpToMiddle])
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     const container = scrollRef.current
     if (!container) return
     setIsDragging(true)
     wasDraggedRef.current = false
-    container.style.scrollSnapType = "none"
-    container.style.scrollBehavior = "auto"
+    isTouchDragRef.current = e.pointerType === "touch"
+
+    if (isTouchDragRef.current) {
+      container.style.scrollSnapType = ""
+      container.style.scrollBehavior = ""
+      container.style.touchAction = ""
+    } else {
+      container.style.scrollSnapType = "none"
+      container.style.scrollBehavior = "auto"
+      container.style.touchAction = "none"
+    }
+
     container.setPointerCapture(e.pointerId)
     dragStartRef.current = e.clientX
     scrollStartRef.current = container.scrollLeft
@@ -39,23 +112,44 @@ export default function LandingPortfolio() {
   const handlePointerMove = useCallback(
     (e: React.PointerEvent) => {
       if (!isDragging) return
+      e.preventDefault()
       const container = scrollRef.current
       if (!container) return
-      const delta = e.clientX - dragStartRef.current
-      if (Math.abs(delta) > 5) wasDraggedRef.current = true
-      container.scrollLeft = scrollStartRef.current - delta
+
+      if (isTouchDragRef.current) {
+        scrollStartRef.current = container.scrollLeft
+      } else {
+        const delta = e.clientX - dragStartRef.current
+        container.scrollLeft = scrollStartRef.current - delta
+      }
     },
     [isDragging]
   )
 
-  const handlePointerUp = useCallback((e: React.PointerEvent) => {
-    const container = scrollRef.current
-    if (!container) return
-    setIsDragging(false)
-    container.style.scrollSnapType = "x mandatory"
-    container.style.scrollBehavior = "smooth"
-    container.releasePointerCapture(e.pointerId)
-  }, [])
+  const handlePointerUp = useCallback(
+    (e: React.PointerEvent) => {
+      const container = scrollRef.current
+      if (!container) return
+      setIsDragging(false)
+      wasDraggedRef.current = true
+
+      if (!isTouchDragRef.current) {
+        container.style.scrollSnapType = "x mandatory"
+        container.style.scrollBehavior = "smooth"
+        container.style.touchAction = ""
+        const w = itemWidth()
+        if (w) {
+          const nearest = Math.round(container.scrollLeft / w)
+          container.scrollLeft = nearest * w
+        }
+      }
+
+      container.releasePointerCapture(e.pointerId)
+      updateActiveIndex()
+      jumpToMiddle()
+    },
+    [updateActiveIndex, jumpToMiddle]
+  )
 
   const handleImageClick = useCallback(
     (index: number) => {
@@ -72,12 +166,12 @@ export default function LandingPortfolio() {
   const closeLightbox = useCallback(() => setLightboxIndex(null), [])
 
   const goToPrev = useCallback(() => {
-    setLightboxIndex((prev) => (prev !== null ? (prev - 1 + portafolio.length) % portafolio.length : null))
-  }, [])
+    setLightboxIndex((prev) => (prev !== null ? (prev - 1 + itemsPerSet) % itemsPerSet : null))
+  }, [itemsPerSet])
 
   const goToNext = useCallback(() => {
-    setLightboxIndex((prev) => (prev !== null ? (prev + 1) % portafolio.length : null))
-  }, [])
+    setLightboxIndex((prev) => (prev !== null ? (prev + 1) % itemsPerSet : null))
+  }, [itemsPerSet])
 
   useEffect(() => {
     if (lightboxIndex === null) return
@@ -109,20 +203,21 @@ export default function LandingPortfolio() {
         ref={scrollRef}
         className="flex overflow-x-auto no-scrollbar gap-4 md:gap-6 px-5 md:px-16 cursor-grab active:cursor-grabbing"
         style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth", touchAction: "pan-x pinch-zoom" }}
+        onScroll={handleScroll}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
       >
-        {portafolio.map((src, i) => (
+        {extendedPortafolio.map((src, i) => (
           <div
-            key={src}
-            className={`shrink-0 w-[70vw] md:w-[28vw] lg:w-[22vw] ${HEIGHTS[i % HEIGHTS.length]} relative rounded-lg overflow-hidden scroll-snap-align-center select-none`}
+            key={`${src}-${i}`}
+            className={`landing-portfolio-card shrink-0 w-[70vw] md:w-[28vw] lg:w-[22vw] ${HEIGHTS[i % HEIGHTS.length]} relative rounded-lg overflow-hidden scroll-snap-align-center select-none`}
             style={{ scrollSnapAlign: "center" }}
-            onClick={() => handleImageClick(i)}
+            onClick={() => handleImageClick(i % itemsPerSet)}
           >
             <Image
-              alt={`Portfolio ${i + 1}`}
+              alt={`Portfolio ${(i % itemsPerSet) + 1}`}
               fill
               className="object-cover transition-transform duration-700 motion-safe:hover:scale-105"
               src={src}
@@ -183,7 +278,7 @@ export default function LandingPortfolio() {
           </div>
 
           <span className="absolute bottom-5 text-white/40 text-xs font-body-md tracking-wider">
-            {lightboxIndex + 1} / {portafolio.length}
+            {lightboxIndex + 1} / {itemsPerSet}
           </span>
         </div>
       )}

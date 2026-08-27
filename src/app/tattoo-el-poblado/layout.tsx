@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
-import { LanguageProvider } from "@/i18n"
+import { LanguageProvider, type Locale } from "@/i18n"
+import { cookies } from "next/headers"
 import "../globals.css"
 
 export const metadata: Metadata = {
@@ -23,10 +24,14 @@ export const metadata: Metadata = {
   },
 }
 
-export default function TattooElPobladoLayout({
+export default async function TattooElPobladoLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <LanguageProvider>{children}</LanguageProvider>
+  const cookieStore = await cookies()
+  const localeCookie = cookieStore.get("lafama-locale")?.value
+  const initialLocale: Locale = localeCookie === "en" || localeCookie === "es" ? localeCookie : "es"
+
+  return <LanguageProvider initialLocale={initialLocale}>{children}</LanguageProvider>
 }

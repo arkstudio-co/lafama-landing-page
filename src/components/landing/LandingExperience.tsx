@@ -4,10 +4,10 @@ import Image from "next/image"
 import { useTranslations } from "@/i18n"
 
 const experienceImages = [
-  { src: "/images/somos.png", alt: "La Fama artist" },
-  { src: "/images/asesoria-image.jpg", alt: "Tattoo consultation" },
-  { src: "/images/IMG_3205.PNG", alt: "Studio experience" },
-  { src: "/images/CB69FAC2-7220-4B79-AA73-1F1687A916FE.jpg", alt: "Comfortable environment" },
+  { type: "video" as const, src: "/videos/your-idea.mp4", alt: "Your idea come to life" },
+  { type: "image" as const, src: "/images/tu-artista.jpg", alt: "Tattoo artist at work" },
+  { type: "image" as const, src: "/images/IMG_3205.PNG", alt: "Studio experience" },
+  { type: "image" as const, src: "/images/CB69FAC2-7220-4B79-AA73-1F1687A916FE.jpg", alt: "Comfortable environment" },
 ]
 
 export default function LandingExperience() {
@@ -25,14 +25,25 @@ export default function LandingExperience() {
               className="group cursor-default"
             >
               <div className="relative aspect-[3/4] overflow-hidden rounded-lg mb-5">
-                <Image
-                  alt={experienceImages[i].alt}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  src={experienceImages[i].src}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  loading="lazy"
-                />
+                {experienceImages[i].type === "video" ? (
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    src={experienceImages[i].src}
+                  />
+                ) : (
+                  <Image
+                    alt={experienceImages[i].alt}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    src={experienceImages[i].src}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    loading="lazy"
+                  />
+                )}
               </div>
               <h3 className="font-headline-lg text-lg md:text-xl uppercase tracking-wider mb-2">
                 {card.title}

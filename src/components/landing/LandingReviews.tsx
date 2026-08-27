@@ -2,7 +2,7 @@
 
 import { useTranslations } from "@/i18n"
 import { resenas } from "@/data/resenas"
-import { useRef, useState, useCallback } from "react"
+import { useRef, useState, useCallback, useEffect } from "react"
 
 const selectedReviews = [
   resenas[0],
@@ -12,19 +12,83 @@ const selectedReviews = [
   resenas[5],
 ]
 
+const GAP = 20
+
+function getCardWidth() {
+  if (typeof document === "undefined") return 400
+  const el = document.querySelector<HTMLDivElement>(".landing-review-card")
+  return (el?.offsetWidth ?? 400) + GAP
+}
+
 export default function LandingReviews() {
   const { t } = useTranslations()
   const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const [isDragging, setIsDragging] = useState(false)
   const dragStartRef = useRef(0)
   const scrollStartRef = useRef(0)
+  const wasDraggedRef = useRef(false)
+  const isTouchDragRef = useRef(false)
+
+  const itemsPerSet = selectedReviews.length
+  const extendedReviews = [...selectedReviews, ...selectedReviews, ...selectedReviews]
+
+  const itemWidth = () => getCardWidth()
+
+  const jumpToMiddle = useCallback(() => {
+    const container = scrollRef.current
+    if (!container) return
+    const w = itemWidth()
+    if (!w) return
+    const oneSetWidth = w * itemsPerSet
+    const currentScroll = container.scrollLeft
+    if (currentScroll < oneSetWidth) {
+      container.style.scrollBehavior = "auto"
+      container.scrollLeft = currentScroll + oneSetWidth
+      container.style.scrollBehavior = "smooth"
+    } else if (currentScroll >= oneSetWidth * 2) {
+      container.style.scrollBehavior = "auto"
+      container.scrollLeft = currentScroll - oneSetWidth
+      container.style.scrollBehavior = "smooth"
+    }
+  }, [itemsPerSet])
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (container) {
+      container.style.scrollBehavior = "auto"
+      container.scrollLeft = itemWidth() * itemsPerSet
+      container.style.scrollBehavior = "smooth"
+    }
+  }, [itemsPerSet])
+
+  const handleScroll = useCallback(() => {
+    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+    scrollTimeoutRef.current = setTimeout(() => {
+      if (!wasDraggedRef.current) {
+        jumpToMiddle()
+      }
+      wasDraggedRef.current = false
+    }, 150)
+  }, [jumpToMiddle])
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     const container = scrollRef.current
     if (!container) return
     setIsDragging(true)
-    container.style.scrollSnapType = "none"
-    container.style.scrollBehavior = "auto"
+    wasDraggedRef.current = false
+    isTouchDragRef.current = e.pointerType === "touch"
+
+    if (isTouchDragRef.current) {
+      container.style.scrollSnapType = ""
+      container.style.scrollBehavior = ""
+      container.style.touchAction = ""
+    } else {
+      container.style.scrollSnapType = "none"
+      container.style.scrollBehavior = "auto"
+      container.style.touchAction = "none"
+    }
+
     container.setPointerCapture(e.pointerId)
     dragStartRef.current = e.clientX
     scrollStartRef.current = container.scrollLeft
@@ -33,22 +97,43 @@ export default function LandingReviews() {
   const handlePointerMove = useCallback(
     (e: React.PointerEvent) => {
       if (!isDragging) return
+      e.preventDefault()
       const container = scrollRef.current
       if (!container) return
-      const delta = e.clientX - dragStartRef.current
-      container.scrollLeft = scrollStartRef.current - delta
+
+      if (isTouchDragRef.current) {
+        scrollStartRef.current = container.scrollLeft
+      } else {
+        const delta = e.clientX - dragStartRef.current
+        container.scrollLeft = scrollStartRef.current - delta
+      }
     },
     [isDragging]
   )
 
-  const handlePointerUp = useCallback((e: React.PointerEvent) => {
-    const container = scrollRef.current
-    if (!container) return
-    setIsDragging(false)
-    container.style.scrollSnapType = "x mandatory"
-    container.style.scrollBehavior = "smooth"
-    container.releasePointerCapture(e.pointerId)
-  }, [])
+  const handlePointerUp = useCallback(
+    (e: React.PointerEvent) => {
+      const container = scrollRef.current
+      if (!container) return
+      setIsDragging(false)
+      wasDraggedRef.current = true
+
+      if (!isTouchDragRef.current) {
+        container.style.scrollSnapType = "x mandatory"
+        container.style.scrollBehavior = "smooth"
+        container.style.touchAction = ""
+        const w = itemWidth()
+        if (w) {
+          const nearest = Math.round(container.scrollLeft / w)
+          container.scrollLeft = nearest * w
+        }
+      }
+
+      container.releasePointerCapture(e.pointerId)
+      jumpToMiddle()
+    },
+    [jumpToMiddle]
+  )
 
   return (
     <section className="py-section-gap bg-background">
@@ -69,15 +154,16 @@ export default function LandingReviews() {
         ref={scrollRef}
         className="flex overflow-x-auto no-scrollbar gap-5 md:gap-6 px-5 md:px-16 cursor-grab active:cursor-grabbing"
         style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth", touchAction: "pan-x pinch-zoom" }}
+        onScroll={handleScroll}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
       >
-        {selectedReviews.map((review) => (
+        {extendedReviews.map((review, i) => (
           <div
-            key={review.author}
-            className="shrink-0 w-[80vw] md:w-[30vw] lg:w-[24vw] bg-white p-6 md:p-8 rounded-xl flex flex-col justify-between select-none scroll-snap-align-center"
+            key={`${review.author}-${i}`}
+            className="landing-review-card shrink-0 w-[80vw] md:w-[30vw] lg:w-[24vw] bg-white p-6 md:p-8 rounded-xl flex flex-col justify-between select-none scroll-snap-align-center"
             style={{ scrollSnapAlign: "center" }}
           >
             <div>
