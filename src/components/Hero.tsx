@@ -1,16 +1,14 @@
-import Image from "next/image"
-
 export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center noise-overlay">
-      <Image
-        alt="Cinematic close-up of a professional tattoo artist"
-        fill
-        className="object-cover brightness-[0.45] grayscale-[0.25]"
-        src="/images/hero-image.JPG"
-        sizes="100vw"
-        quality={100}
-        preload
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/images/hero-image.JPG"
+        className="absolute inset-0 w-full h-full object-cover brightness-[0.45] grayscale-[0.25]"
+        src="/videos/video-hero.mp4"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none z-[1]" />
       <div className="relative z-10 text-center px-4 max-w-4xl mt-16 md:mt-24">
