@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { useTranslations } from "@/i18n"
 
 export default function LandingHero() {
@@ -15,14 +14,13 @@ export default function LandingHero() {
 
   return (
     <section className="relative h-[85vh] md:h-screen w-full overflow-hidden flex items-center justify-center noise-overlay">
-      <Image
-        alt="La Fama Tattoo Studio - Professional tattoo artist at work"
-        fill
-        className="object-cover brightness-[0.4] grayscale-[0.2]"
-        src="/images/hero-image.JPG"
-        sizes="100vw"
-        quality={90}
-        priority
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover brightness-[0.4] grayscale-[0.2]"
+        src="/videos/video-hero.mp4"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-[1]" />
       <div className="relative z-10 text-center px-5 max-w-4xl mt-8 md:mt-16">
