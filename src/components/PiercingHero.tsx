@@ -15,7 +15,7 @@ export default function PiercingHero() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none z-[1]" />
       <div className="relative z-10 text-center px-4 max-w-4xl mt-16 md:mt-24">
         <h1 className="font-display-lg text-4xl md:text-5xl lg:text-6xl leading-[1.15] text-white mb-6 uppercase hero-headline">
-          PERFORACIÓN PROFESIONAL
+          PIERCING EN EL POBLADO, MEDELLÍN
         </h1>
         <p className="text-white/70 mb-12 max-w-2xl mx-auto italic text-base md:text-lg leading-relaxed hero-subtitle">
           Técnicas seguras, materiales hipoalergénicos y atención personalizada
