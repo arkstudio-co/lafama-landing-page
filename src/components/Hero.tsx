@@ -1,16 +1,11 @@
-import Image from "next/image"
+import HeroImage from "@/components/HeroImage"
 
 export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center noise-overlay">
-      <Image
-        alt="Tatuaje profesional en el taller de La Fama, Medellín"
-        fill
-        className="object-cover brightness-[0.45] grayscale-[0.25]"
-        src="/images/hero-image.JPG"
-        sizes="100vw"
-        quality={100}
-        preload
+      <HeroImage
+        alt="Estudio de tatuajes La Fama en Medellín"
+        className="brightness-[0.45] grayscale-[0.25]"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/50 pointer-events-none z-[1]" />
       <div className="relative z-10 text-center px-4 max-w-4xl mt-16 md:mt-24">
