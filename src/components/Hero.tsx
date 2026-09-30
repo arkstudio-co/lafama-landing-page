@@ -1,14 +1,16 @@
+import Image from "next/image"
+
 export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center noise-overlay">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/images/hero-image.JPG"
-        className="absolute inset-0 w-full h-full object-cover brightness-[0.45] grayscale-[0.25]"
-        src="/videos/video-hero.mp4"
+      <Image
+        alt="Tatuaje profesional en el taller de La Fama, Medellín"
+        fill
+        className="object-cover brightness-[0.45] grayscale-[0.25]"
+        src="/images/hero-image.JPG"
+        sizes="100vw"
+        quality={100}
+        preload
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/50 pointer-events-none z-[1]" />
       <div className="relative z-10 text-center px-4 max-w-4xl mt-16 md:mt-24">
