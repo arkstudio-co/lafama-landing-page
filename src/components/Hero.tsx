@@ -10,7 +10,8 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/50 pointer-events-none z-[1]" />
       <div className="relative z-10 text-center px-4 max-w-4xl mt-16 md:mt-24">
         <h1 className="font-display-lg text-4xl md:text-5xl lg:text-6xl leading-[1.15] text-white mb-6 uppercase hero-headline">
-          TATÚATE CON EXPERTOS EN EL CORAZÓN DE MEDELLÍN
+          <span className="block md:hidden">TATTOO EN EL POBLADO, MEDELLÍN</span>
+          <span className="hidden md:block">TATÚATE CON EXPERTOS EN EL CORAZÓN DE MEDELLÍN</span>
         </h1>
         <p className="text-white/70 mb-12 max-w-2xl mx-auto italic text-base md:text-lg leading-relaxed hero-subtitle">
           Vive una experiencia diferente. Un espacio sobrio y tranquilo,

@@ -18,9 +18,9 @@ export default function HeroImage({ alt, className }: HeroImageProps) {
 
   const { props: mobile } = getImageProps({
     alt,
-    src: "/images/asesoria-image.jpg",
-    width: 1290,
-    height: 2293,
+    src: "/images/portafolio/6.jpeg",
+    width: 3024,
+    height: 4032,
     quality: 90,
     sizes: "100vw",
     loading: "eager",
